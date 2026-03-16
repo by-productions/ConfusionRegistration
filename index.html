@@ -516,13 +516,94 @@
     0%,100%{opacity:.3;transform:translateX(-50%) translateY(0)}
     50%{opacity:.8;transform:translateX(-50%) translateY(6px)}
   }
+
+  .schedule-section {
+    padding: 70px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .schedule-inner { direction: rtl; }
+
+  .schedule-title {
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 900;
+    margin-bottom: 50px;
+    text-align: center;
+  }
+
+  .schedule-title span { color: var(--yellow); }
+
+  .schedule-item {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .schedule-item:last-child { border-bottom: none; margin-bottom: 0; }
+
+  .time-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    min-width: 70px;
+  }
+
+  .time-range { font-size: clamp(16px, 2.5vw, 22px); line-height: 1.2; }
+  .time-dash { font-size: 12px; color: rgba(255,255,255,0.3); margin: 2px 0; }
+
+  .session-block { flex: 1; }
+
+  .session-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    padding: 4px 12px;
+    border-radius: 2px;
+    margin-bottom: 12px;
+    font-family: 'Space Mono', monospace;
+  }
+
+  .session-title {
+    font-size: clamp(17px, 2.5vw, 24px);
+    font-weight: 700;
+    line-height: 1.45;
+    margin-bottom: 14px;
+  }
+
+  .speaker-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .speaker-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+  .speaker-name {
+    font-size: clamp(14px, 2vw, 17px);
+    color: rgba(255,255,255,0.65);
+    font-weight: 400;
+  }
+
+  @media(max-width:500px){
+    .schedule-item { flex-direction: column; gap: 16px; }
+    .time-block { flex-direction: row; gap: 6px; align-items: baseline; }
+    .time-dash { display: none; }
+  }
 </style>
 </head>
 <body>
 
 <nav>
   <span class="brand">CONFUSION × קרן אלוף</span>
-  <span class="nav-date">18.3.26 · 11:30</span>
+  <span class="nav-date">18.3.26 · 10:15</span>
   <a href="#register" class="nav-cta">להרשמה</a>
 </nav>
 
@@ -550,7 +631,7 @@
 
 <div class="yellow-band">
   <div class="ticker-inner">
-    שידור לייב &nbsp;·&nbsp; 18.3.26 &nbsp;·&nbsp; 11:30 &nbsp;·&nbsp; CONFUSION &nbsp;·&nbsp; קרן אלוף &nbsp;·&nbsp; כנס מנהיגות &nbsp;·&nbsp; שידור לייב &nbsp;·&nbsp; 18.3.26 &nbsp;·&nbsp; 11:30 &nbsp;·&nbsp; CONFUSION &nbsp;·&nbsp; קרן אלוף &nbsp;·&nbsp; כנס מנהיגות &nbsp;·&nbsp;
+    שידור לייב &nbsp;·&nbsp; 18.3.26 &nbsp;·&nbsp; 10:15 &nbsp;·&nbsp; CONFUSION &nbsp;·&nbsp; קרן אלוף &nbsp;·&nbsp; B.Y. הפקות &nbsp;·&nbsp; שידור לייב &nbsp;·&nbsp; 18.3.26 &nbsp;·&nbsp; 10:15 &nbsp;·&nbsp; CONFUSION &nbsp;·&nbsp; קרן אלוף &nbsp;·&nbsp; B.Y. הפקות &nbsp;·&nbsp;
   </div>
 </div>
 
@@ -560,7 +641,7 @@
     <span class="small">תאריך</span>
   </div>
   <div class="meta-item pink">
-    <span class="big">11:30</span>
+    <span class="big">10:15</span>
     <span class="small">שעה</span>
   </div>
   <div class="meta-item green">
@@ -580,12 +661,12 @@
   </div>
   <div class="about-body">
     <p>
-      קרן אלוף הפקות מזמינים אתכם, <strong>כלקוחות ושותפים שלנו לדרך</strong>,<br>
-      למפגש משודר עם <strong>ד"ר נועם פיינהולץ</strong>.
+      קרן אלוף ו-B.Y. הפקות מזמינים אתכם, <strong>כלקוחות ושותפים שלנו לדרך</strong>,
+      למפגש משודר שיתן כלים ליצירת בהירות ניהולית, להובלה רגישה <strong>שבו-זמנית מניעה קדימה גם את העובדים וגם את הארגון בתקופה מבלבלת.</strong>
     </p>
     <br>
     <p>
-      המפגש ייתן כלים ליצירת בהירות ניהולית, להובלה רגישה <strong>שגם מניעה קדימה את העובדים והארגון בתקופה מבלבלת</strong>.
+      ב-18.3.26 בשעה 10:15 ניפגש <strong>למשדר לייב</strong> עם הרצאות שנבנו במיוחד לסייע בהובלה בימים אלו.
     </p>
     <br>
     <p>האירוע משודר מאולפני <strong>point 2 point</strong>.</p>
@@ -594,14 +675,41 @@
 
 <div class="divider"></div>
 
-<div class="speaker-section">
-  <div class="speaker-badge" data-text="ד״ר נועם פיינהולץ"></div>
-  <div class="speaker-info">
-    <h3>ד"ר נועם פיינהולץ</h3>
-    <p>
-      מומחה לניהול בשינוי וחוסן ארגוני.
-      במפגש ייתן כלים ליצירת בהירות ניהולית, להובלה רגישה שגם מניעה קדימה את העובדים והארגון, גם בתקופה מבלבלת.
-    </p>
+<div class="schedule-section">
+  <div class="schedule-inner">
+    <h2 class="schedule-title">לו"ז <span>האירוע</span></h2>
+
+    <div class="schedule-item">
+      <div class="time-block">
+        <span class="time-range">10:15</span>
+        <span class="time-dash">—</span>
+        <span class="time-range">11:00</span>
+      </div>
+      <div class="session-block">
+        <div class="session-tag" style="background:var(--yellow);color:var(--black)">הרצאה ראשונה</div>
+        <h3 class="session-title">תקשורת בינאישית, פנים ארגונית והובלת צוותים בתקופות מורכבות</h3>
+        <div class="speaker-row">
+          <div class="speaker-dot" style="background:var(--yellow)"></div>
+          <span class="speaker-name">ד"ר נועם פיינהולץ</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="schedule-item">
+      <div class="time-block">
+        <span class="time-range">11:30</span>
+        <span class="time-dash">—</span>
+        <span class="time-range">12:15</span>
+      </div>
+      <div class="session-block">
+        <div class="session-tag" style="background:var(--pink);color:var(--white)">הרצאה שנייה</div>
+        <h3 class="session-title">ניהול אמפתי בימי משבר – כלים למנהלים בזמן מלחמה</h3>
+        <div class="speaker-row">
+          <div class="speaker-dot" style="background:var(--pink)"></div>
+          <span class="speaker-name">ד"ר ליאת יקיר</span>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -667,7 +775,7 @@
     <div class="logo-text">KEREN ALOUF · INSPIRING PEOPLE</div>
     <div class="tagline">Creative &amp; Productions Since 1998</div>
   </div>
-  <div class="logo-text">CONFUSION · 18.3.26 · 11:30</div>
+  <div class="logo-text">CONFUSION · 18.3.26 · 10:15</div>
 </footer>
 
 <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
