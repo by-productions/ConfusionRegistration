@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Confusion – שידור לייב | 18.3.26</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --yellow: #F5C800;
+    --pink: #E8407A;
+    --green: #3CAF4A;
+    --red: #D93B2B;
+    --blue: #2B5EC7;
+    --white: #f5f2ee;
+    --black: #0a0a0a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Heebo', sans-serif;
+    overflow-x: hidden;
+    cursor: crosshair;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: .4;
+  }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 40px 20px;
+  }
+
+  .hero-bg-text {
+    position: absolute;
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(120px, 22vw, 280px);
+    font-weight: 700;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.06);
+    letter-spacing: -0.05em;
+    user-select: none;
+    white-space: nowrap;
+    animation: driftBg 18s ease-in-out infinite alternate;
+    top: 50%; transform: translateY(-50%);
+  }
+
+  @keyframes driftBg {
+    from { transform: translateY(-50%) translateX(-3%); }
+    to   { transform: translateY(-50%) translateX(3%); }
+  }
+
+  .letters-wrap {
+    position: relative;
+    width: min(700px, 95vw);
+    height: clamp(420px, 65vw, 620px);
+    margin-bottom: 20px;
+  }
+
+  .letter {
+    position: absolute;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    line-height: 1;
+    animation: floatLetter var(--dur, 4s) ease-in-out infinite alternate;
+    transition: transform 0.3s ease;
+  }
+
+  .letter:hover { transform: scale(1.15) rotate(5deg) !important; }
+
+  @keyframes floatLetter {
+    from { transform: translate(0,0) rotate(var(--r0, 0deg)); }
+    to   { transform: translate(var(--tx,4px), var(--ty,-8px)) rotate(var(--r1, 3deg)); }
+  }
+
+  .l-c  { top:0%;   left:2%;  font-size: clamp(80px,13vw,155px); color: var(--pink);  --dur:3.8s; --tx:5px;  --ty:-10px; --r0:-4deg;  --r1:2deg; }
+  .l-o  { top:0%;   left:22%; font-size: clamp(80px,13vw,155px); color: var(--green); --dur:4.2s; --tx:-6px; --ty:8px;   --r0:3deg;   --r1:-2deg; }
+  .l-n  { top:18%;  left:42%; font-size: clamp(80px,13vw,155px); color: var(--white); --dur:5s;   --tx:8px;  --ty:-5px;  --r0:1deg;   --r1:5deg; }
+  .l-f  { top:25%;  left:62%; font-size: clamp(80px,13vw,155px); color: var(--red);   --dur:3.5s; --tx:-4px; --ty:10px;  --r0:-6deg;  --r1:0deg; }
+  .l-u  { top:45%;  left:5%;  font-size: clamp(80px,13vw,155px); color: var(--yellow);--dur:4.7s; --tx:10px; --ty:-3px;  --r0:2deg;   --r1:-4deg; }
+  .l-s  { top:50%;  left:28%; font-size: clamp(80px,13vw,155px); color: var(--pink);  --dur:3.9s; --tx:-8px; --ty:6px;   --r0:-3deg;  --r1:4deg; }
+  .l-i  { top:52%;  left:55%; font-size: clamp(80px,13vw,155px); color: var(--blue);  --dur:4.4s; --tx:6px;  --ty:-9px;  --r0:5deg;   --r1:-1deg; }
+  .l-o2 { top:68%;  left:72%; font-size: clamp(80px,13vw,155px); color: var(--green); --dur:5.2s; --tx:-5px; --ty:4px;   --r0:-2deg;  --r1:6deg; }
+  .l-n2 { top:72%;  left:10%; font-size: clamp(80px,13vw,155px); color: var(--red);   --dur:4.1s; --tx:7px;  --ty:-7px;  --r0:4deg;   --r1:-3deg; }
+
+  .heb-title {
+    position: absolute;
+    bottom: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: clamp(14px, 2.5vw, 22px);
+    color: rgba(255,255,255,0.35);
+    font-family: 'Heebo', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+  }
+
+  .yellow-band {
+    background: var(--yellow);
+    color: var(--black);
+    padding: 18px 40px;
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(13px, 2vw, 18px);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+  }
+
+  .ticker-inner {
+    display: inline-block;
+    animation: ticker 22s linear infinite;
+  }
+
+  @keyframes ticker {
+    from { transform: translateX(100vw); }
+    to   { transform: translateX(-100%); }
+  }
+
+  .meta-strip {
+    display: flex;
+    justify-content: center;
+    gap: clamp(20px, 5vw, 80px);
+    padding: 50px 20px 30px;
+    text-align: center;
+    flex-wrap: wrap;
+  }
+
+  .meta-item span {
+    display: block;
+    font-family: 'Space Mono', monospace;
+  }
+
+  .meta-item .big {
+    font-size: clamp(28px, 6vw, 64px);
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .meta-item .small {
+    font-size: clamp(11px, 1.5vw, 14px);
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.18em;
+    margin-top: 6px;
+    text-transform: uppercase;
+  }
+
+  .meta-item.yellow .big { color: var(--yellow); }
+  .meta-item.pink .big   { color: var(--pink); }
+  .meta-item.green .big  { color: var(--green); }
+
+  .about {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 30px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  @media(max-width:600px){ .about { grid-template-columns:1fr; } }
+
+  .about-headline {
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 900;
+    line-height: 1.15;
+    direction: rtl;
+  }
+
+  .about-headline .col-y { color: var(--yellow); }
+  .about-headline .col-p { color: var(--pink); }
+
+  .about-body {
+    font-size: clamp(15px, 2vw, 18px);
+    line-height: 1.9;
+    color: rgba(255,255,255,0.75);
+    direction: rtl;
+    font-weight: 300;
+  }
+
+  .about-body strong { color: var(--white); font-weight: 700; }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    margin: 0 auto;
+  }
+
+  .speaker-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 30px;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .speaker-badge {
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--yellow) 0%, var(--pink) 100%);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    animation: rotateBadge 20s linear infinite;
+    position: relative;
+  }
+
+  .speaker-badge::after {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--black);
+    text-align: center;
+    padding: 20px;
+  }
+
+  @keyframes rotateBadge {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  .speaker-info { flex: 1; min-width: 220px; direction: rtl; }
+
+  .speaker-info h3 {
+    font-size: clamp(22px,4vw,36px);
+    font-weight:900;
+    color: var(--yellow);
+    margin-bottom: 10px;
+  }
+
+  .speaker-info p {
+    font-size: clamp(14px,2vw,17px);
+    color: rgba(255,255,255,0.7);
+    line-height: 1.8;
+  }
+
+  .form-section {
+    background: #111;
+    padding: 70px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .form-section::before {
+    content: 'CONFUSION';
+    position: absolute;
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(80px, 18vw, 220px);
+    font-weight: 700;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.04);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .form-inner {
+    max-width: 580px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .form-title {
+    text-align: center;
+    margin-bottom: 50px;
+    direction: rtl;
+  }
+
+  .form-title h2 {
+    font-size: clamp(30px, 6vw, 60px);
+    font-weight: 900;
+    line-height: 1.1;
+  }
+
+  .form-title h2 span { color: var(--yellow); }
+
+  .form-title p {
+    margin-top: 14px;
+    font-size: clamp(13px,2vw,16px);
+    color: rgba(255,255,255,0.5);
+    line-height: 1.8;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    direction: rtl;
+  }
+
+  @media(max-width:500px){ .form-grid { grid-template-columns:1fr; } }
+
+  .form-grid .full { grid-column: 1 / -1; }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .field label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+    font-family: 'Space Mono', monospace;
+  }
+
+  .field input {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px;
+    padding: 14px 16px;
+    color: var(--white);
+    font-size: 16px;
+    font-family: 'Heebo', sans-serif;
+    direction: rtl;
+    transition: border-color 0.25s, background 0.25s;
+    outline: none;
+    width: 100%;
+  }
+
+  .field input:focus {
+    border-color: var(--yellow);
+    background: rgba(245, 200, 0, 0.06);
+  }
+
+  .field input::placeholder { color: rgba(255,255,255,0.2); }
+
+  .submit-btn {
+    margin-top: 30px;
+    width: 100%;
+    padding: 18px;
+    background: var(--yellow);
+    color: var(--black);
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    font-weight: 900;
+    font-family: 'Heebo', sans-serif;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    transition: transform 0.15s, box-shadow 0.15s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .submit-btn::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.4s;
+  }
+
+  .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(245,200,0,0.35); }
+  .submit-btn:hover::after { left: 100%; }
+  .submit-btn:active { transform: translateY(0); }
+
+  .form-note {
+    margin-top: 16px;
+    text-align: center;
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    line-height: 1.7;
+    direction: rtl;
+  }
+
+  .success-msg,
+  .error-msg {
+    display: none;
+    text-align: center;
+    padding: 50px 20px;
+    direction: rtl;
+  }
+
+  .success-msg h3,
+  .error-msg h3 {
+    font-size: clamp(26px, 5vw, 48px);
+    font-weight: 900;
+    margin-bottom: 16px;
+  }
+
+  .success-msg h3 span { color: var(--green); }
+  .error-msg h3 span { color: var(--red); }
+
+  .success-msg p,
+  .error-msg p {
+    color: rgba(255,255,255,0.55);
+    line-height: 1.9;
+    font-size: 16px;
+  }
+
+  footer {
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    direction: rtl;
+  }
+
+  footer .logo-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.1em;
+  }
+
+  footer .tagline {
+    font-size: 12px;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 0.08em;
+  }
+
+  nav {
+    position: fixed; top: 0; width: 100%;
+    padding: 16px 30px;
+    display: flex; justify-content: space-between; align-items: center;
+    z-index: 100;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
+    direction: rtl;
+  }
+
+  nav .brand {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--white);
+  }
+
+  nav .nav-date {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--yellow);
+    letter-spacing: 0.1em;
+  }
+
+  nav .nav-cta {
+    background: var(--yellow);
+    color: var(--black);
+    padding: 8px 20px;
+    border-radius: 3px;
+    font-weight: 900;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s;
+    font-family: 'Heebo', sans-serif;
+  }
+
+  nav .nav-cta:hover { opacity: 0.85; }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    animation: fadeUpDown 2s ease-in-out infinite;
+  }
+
+  .scroll-hint span {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .scroll-arrow {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, transparent, var(--yellow));
+  }
+
+  @keyframes fadeUpDown {
+    0%,100%{opacity:.3;transform:translateX(-50%) translateY(0)}
+    50%{opacity:.8;transform:translateX(-50%) translateY(6px)}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="brand">CONFUSION × קרן אלוף</span>
+  <span class="nav-date">18.3.26 · 11:30</span>
+  <a href="#register" class="nav-cta">להרשמה</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg-text">CONFUSION</div>
+
+  <div class="letters-wrap">
+    <span class="letter l-c">c</span>
+    <span class="letter l-o">o</span>
+    <span class="letter l-n">n</span>
+    <span class="letter l-f">f</span>
+    <span class="letter l-u">u</span>
+    <span class="letter l-s">s</span>
+    <span class="letter l-i">i</span>
+    <span class="letter l-o2">o</span>
+    <span class="letter l-n2">n</span>
+    <span class="heb-title">קוֹנְפִּיוּזֶ׳ן</span>
+  </div>
+
+  <div class="scroll-hint">
+    <span>SCROLL</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<div class="yellow-band">
+  <div class="ticker-inner">
+    שידור לייב &nbsp;·&nbsp; 18.3.26 &nbsp;·&nbsp; 11:30 &nbsp;·&nbsp; CONFUSION &nbsp;·&nbsp; קרן אלוף &nbsp;·&nbsp; כנס מנהיגות &nbsp;·&nbsp; שידור לייב &nbsp;·&nbsp; 18.3.26 &nbsp;·&nbsp; 11:30 &nbsp;·&nbsp; CONFUSION &nbsp;·&nbsp; קרן אלוף &nbsp;·&nbsp; כנס מנהיגות &nbsp;·&nbsp;
+  </div>
+</div>
+
+<div class="meta-strip">
+  <div class="meta-item yellow">
+    <span class="big">18.3.26</span>
+    <span class="small">תאריך</span>
+  </div>
+  <div class="meta-item pink">
+    <span class="big">11:30</span>
+    <span class="small">שעה</span>
+  </div>
+  <div class="meta-item green">
+    <span class="big">LIVE</span>
+    <span class="small">שידור מאולפני point 2 point</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="about">
+  <div>
+    <h2 class="about-headline">
+      הבלבול שמוביל<br>
+      <span class="col-y">קדימה</span>
+    </h2>
+  </div>
+  <div class="about-body">
+    <p>
+      קרן אלוף הפקות מזמינים אתכם, <strong>כלקוחות ושותפים שלנו לדרך</strong>,<br>
+      למפגש משודר עם <strong>ד"ר נועם פיינהולץ</strong>.
+    </p>
+    <br>
+    <p>
+      המפגש ייתן כלים ליצירת בהירות ניהולית, להובלה רגישה <strong>שגם מניעה קדימה את העובדים והארגון בתקופה מבלבלת</strong>.
+    </p>
+    <br>
+    <p>האירוע משודר מאולפני <strong>point 2 point</strong>.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="speaker-section">
+  <div class="speaker-badge" data-text="ד״ר נועם פיינהולץ"></div>
+  <div class="speaker-info">
+    <h3>ד"ר נועם פיינהולץ</h3>
+    <p>
+      מומחה לניהול בשינוי וחוסן ארגוני.
+      במפגש ייתן כלים ליצירת בהירות ניהולית, להובלה רגישה שגם מניעה קדימה את העובדים והארגון, גם בתקופה מבלבלת.
+    </p>
+  </div>
+</div>
+
+<section class="form-section" id="register">
+  <div class="form-inner">
+    <div class="form-title" id="formTitle">
+      <h2>בואו <span>להירשם</span></h2>
+      <p>
+        מילוי הטופס אינו מהווה רישום סופי לאירוע.<br>
+        ההרשמה תיבדק על ידי קרן אלוף ואישור ישלח אליכם במייל.
+      </p>
+    </div>
+
+    <form id="regForm" novalidate>
+      <div class="form-grid">
+        <div class="field full">
+          <label>שם מלא *</label>
+          <input type="text" name="fullname" placeholder="ישראל ישראלי" required>
+        </div>
+        <div class="field">
+          <label>חברה *</label>
+          <input type="text" name="company" placeholder="שם החברה" required>
+        </div>
+        <div class="field">
+          <label>תפקיד *</label>
+          <input type="text" name="role" placeholder="מנהל / מנהלת" required>
+        </div>
+        <div class="field">
+          <label>מייל *</label>
+          <input type="email" name="email" placeholder="mail@company.com" required>
+        </div>
+        <div class="field">
+          <label>טלפון *</label>
+          <input type="tel" name="phone" placeholder="050-0000000" required>
+        </div>
+      </div>
+      <button type="submit" class="submit-btn">שלחו בקשת הרשמה ←</button>
+      <p class="form-note">
+        * ההרשמה כפופה לאישור קרן אלוף הפקות.<br>
+        לאחר הגשת הטופס תקבלו אישור במייל וזימון ליומן.
+      </p>
+    </form>
+
+    <div class="success-msg" id="successMsg">
+      <h3>תודה! <span>הבקשה התקבלה</span> ✓</h3>
+      <p>
+        קיבלנו את פנייתכם.<br>
+        נשלח אליכם מייל אישור וזימון ליומן.
+      </p>
+    </div>
+
+    <div class="error-msg" id="errorMsg">
+      <h3>אופס, <span>משהו השתבש</span></h3>
+      <p id="errorText">
+        לא הצלחנו לשלוח את ההרשמה. נסו שוב בעוד רגע.
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <div class="logo-text">KEREN ALOUF · INSPIRING PEOPLE</div>
+    <div class="tagline">Creative &amp; Productions Since 1998</div>
+  </div>
+  <div class="logo-text">CONFUSION · 18.3.26 · 11:30</div>
+</footer>
+
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+<script>
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyvuwdWxU3p-2DWg-EinNZN8280zAaArR1MbAe5MdnIQv906JIsWhmhLqqKMy0-xbq2/exec';
+
+  const letters = document.querySelectorAll('.letter');
+  document.addEventListener('mousemove', e => {
+    const cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+    const dx = (e.clientX - cx) / cx, dy = (e.clientY - cy) / cy;
+    letters.forEach((l, i) => {
+      const factor = (i % 3 + 1) * 0.8;
+      l.style.transform = `translate(${dx * factor * 6}px, ${dy * factor * 6}px)`;
+    });
+  });
+
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.background =
+      window.scrollY > 60
+        ? 'rgba(10,10,10,0.98)'
+        : 'linear-gradient(to bottom, rgba(10,10,10,0.95), transparent)';
+  });
+
+  let submitTimeout = null;
+
+  window.addEventListener('message', function(event) {
+    if (!event.data || event.data.type !== 'registrationResult') return;
+
+    clearTimeout(submitTimeout);
+
+    const form = document.getElementById('regForm');
+    const successMsg = document.getElementById('successMsg');
+    const errorMsg = document.getElementById('errorMsg');
+    const formTitle = document.getElementById('formTitle');
+    const btn = form.querySelector('.submit-btn');
+
+    btn.disabled = false;
+    btn.textContent = 'שלחו בקשת הרשמה ←';
+
+    if (event.data.success) {
+      form.style.display = 'none';
+      errorMsg.style.display = 'none';
+      successMsg.style.display = 'block';
+      formTitle.style.display = 'none';
+    } else {
+      document.getElementById('errorText').textContent = event.data.message || 'אירעה שגיאה.';
+      errorMsg.style.display = 'block';
+    }
+  });
+
+  document.getElementById('regForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const form = this;
+    const btn = form.querySelector('.submit-btn');
+    const inputs = form.querySelectorAll('input[required]');
+    const errorMsg = document.getElementById('errorMsg');
+
+    let valid = true;
+
+    inputs.forEach(inp => {
+      if (!inp.value.trim()) {
+        inp.style.borderColor = 'var(--red)';
+        valid = false;
+      } else {
+        inp.style.borderColor = '';
+      }
+    });
+
+    if (!valid) return;
+
+    if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'YOUR_APPS_SCRIPT_WEB_APP_URL') {
+      document.getElementById('errorText').textContent = 'לא הוגדרה כתובת Apps Script בקוד האתר.';
+      errorMsg.style.display = 'block';
+      return;
+    }
+
+    errorMsg.style.display = 'none';
+    btn.textContent = 'שולח...';
+    btn.disabled = true;
+
+    const tempForm = document.createElement('form');
+    tempForm.method = 'POST';
+    tempForm.action = APPS_SCRIPT_URL;
+    tempForm.target = 'hidden_iframe';
+    tempForm.style.display = 'none';
+
+    const fields = ['fullname', 'company', 'role', 'email', 'phone'];
+
+    fields.forEach(name => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = name;
+      input.value = form.elements[name].value.trim();
+      tempForm.appendChild(input);
+    });
+
+    document.body.appendChild(tempForm);
+    tempForm.submit();
+    tempForm.remove();
+
+    submitTimeout = setTimeout(() => {
+      btn.disabled = false;
+      btn.textContent = 'שלחו בקשת הרשמה ←';
+      document.getElementById('errorText').textContent = 'לא התקבלה תשובה מהשרת. בדקו שה-Web App פורסם עם הרשאת גישה לכולם.';
+      errorMsg.style.display = 'block';
+    }, 15000);
+  });
+</script>
+</body>
+</html>
