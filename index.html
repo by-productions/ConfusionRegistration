@@ -106,9 +106,9 @@
     left: 50%;
     transform: translateX(-50%);
     font-size: clamp(14px, 2.5vw, 22px);
-    color: rgba(255,255,255,0.35);
+    color: var(--white);
     font-family: 'Heebo', sans-serif;
-    font-weight: 300;
+    font-weight: 500;
     letter-spacing: 0.12em;
     white-space: nowrap;
   }
@@ -129,7 +129,7 @@
 
   .ticker-inner {
     display: inline-block;
-    animation: ticker 22s linear infinite;
+    animation: ticker 26s linear infinite;
   }
 
   @keyframes ticker {
@@ -140,7 +140,7 @@
   .meta-strip {
     display: flex;
     justify-content: center;
-    gap: clamp(20px, 5vw, 80px);
+    gap: clamp(20px, 4vw, 50px);
     padding: 50px 20px 30px;
     text-align: center;
     flex-wrap: wrap;
@@ -152,54 +152,13 @@
   }
 
   .meta-item .big {
-    font-size: clamp(28px, 6vw, 64px);
+    font-size: clamp(22px, 4.5vw, 42px);
     font-weight: 700;
-    line-height: 1;
-  }
-
-  .meta-item .small {
-    font-size: clamp(11px, 1.5vw, 14px);
-    color: rgba(255,255,255,0.45);
-    letter-spacing: 0.18em;
-    margin-top: 6px;
-    text-transform: uppercase;
+    line-height: 1.2;
   }
 
   .meta-item.yellow .big { color: var(--yellow); }
-  .meta-item.pink .big   { color: var(--pink); }
   .meta-item.green .big  { color: var(--green); }
-
-  .about {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px 30px 60px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    align-items: start;
-  }
-
-  @media(max-width:600px){ .about { grid-template-columns:1fr; } }
-
-  .about-headline {
-    font-size: clamp(28px, 5vw, 52px);
-    font-weight: 900;
-    line-height: 1.15;
-    direction: rtl;
-  }
-
-  .about-headline .col-y { color: var(--yellow); }
-  .about-headline .col-p { color: var(--pink); }
-
-  .about-body {
-    font-size: clamp(15px, 2vw, 18px);
-    line-height: 1.9;
-    color: rgba(255,255,255,0.75);
-    direction: rtl;
-    font-weight: 300;
-  }
-
-  .about-body strong { color: var(--white); font-weight: 700; }
 
   .divider {
     width: 100%;
@@ -208,60 +167,101 @@
     margin: 0 auto;
   }
 
-  .speaker-section {
+  .about {
     max-width: 900px;
     margin: 0 auto;
-    padding: 60px 30px;
+    padding: 40px 30px 60px;
+  }
+
+  .about-body {
+    font-size: clamp(18px, 2.2vw, 24px);
+    line-height: 2;
+    color: var(--white);
+    direction: rtl;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .about-body strong {
+    color: var(--white);
+    font-weight: 900;
+  }
+
+  .schedule-section {
+    padding: 70px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .schedule-inner { direction: rtl; }
+
+  .schedule-title {
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 900;
+    margin-bottom: 50px;
+    text-align: center;
+  }
+
+  .schedule-title span { color: var(--yellow); }
+
+  .schedule-item {
     display: flex;
-    gap: 40px;
+    gap: 30px;
+    align-items: flex-start;
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .schedule-item:last-child { border-bottom: none; margin-bottom: 0; }
+
+  .time-block {
+    display: flex;
     align-items: center;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .speaker-badge {
-    width: 160px; height: 160px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--yellow) 0%, var(--pink) 100%);
-    display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
-    animation: rotateBadge 20s linear infinite;
-    position: relative;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    min-width: 130px;
   }
 
-  .speaker-badge::after {
-    content: attr(data-text);
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Space Mono', monospace;
+  .time-range {
+    font-size: clamp(16px, 2.5vw, 22px);
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .session-block { flex: 1; }
+
+  .session-tag {
+    display: inline-block;
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: 0.15em;
-    color: var(--black);
-    text-align: center;
-    padding: 20px;
+    letter-spacing: 0.12em;
+    padding: 4px 12px;
+    border-radius: 2px;
+    margin-bottom: 12px;
+    font-family: 'Space Mono', monospace;
   }
 
-  @keyframes rotateBadge {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
+  .session-title {
+    font-size: clamp(17px, 2.5vw, 24px);
+    font-weight: 700;
+    line-height: 1.45;
+    margin-bottom: 14px;
   }
 
-  .speaker-info { flex: 1; min-width: 220px; direction: rtl; }
-
-  .speaker-info h3 {
-    font-size: clamp(22px,4vw,36px);
-    font-weight:900;
-    color: var(--yellow);
-    margin-bottom: 10px;
+  .speaker-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 
-  .speaker-info p {
-    font-size: clamp(14px,2vw,17px);
-    color: rgba(255,255,255,0.7);
-    line-height: 1.8;
+  .speaker-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+  .speaker-name {
+    font-size: clamp(14px, 2vw, 17px);
+    color: rgba(255,255,255,0.65);
+    font-weight: 400;
   }
 
   .form-section {
@@ -294,7 +294,7 @@
 
   .form-title {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 35px;
     direction: rtl;
   }
 
@@ -305,13 +305,6 @@
   }
 
   .form-title h2 span { color: var(--yellow); }
-
-  .form-title p {
-    margin-top: 14px;
-    font-size: clamp(13px,2vw,16px);
-    color: rgba(255,255,255,0.5);
-    line-height: 1.8;
-  }
 
   .form-grid {
     display: grid;
@@ -331,12 +324,11 @@
   }
 
   .field label {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    color: rgba(255,255,255,0.45);
-    text-transform: uppercase;
-    font-family: 'Space Mono', monospace;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    font-family: 'Heebo', sans-serif;
   }
 
   .field input {
@@ -391,12 +383,13 @@
   .submit-btn:active { transform: translateY(0); }
 
   .form-note {
-    margin-top: 16px;
+    margin-top: 18px;
     text-align: center;
-    font-size: 12px;
-    color: rgba(255,255,255,0.3);
-    line-height: 1.7;
+    font-size: 15px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.9;
     direction: rtl;
+    font-weight: 500;
   }
 
   .success-msg,
@@ -419,7 +412,7 @@
 
   .success-msg p,
   .error-msg p {
-    color: rgba(255,255,255,0.55);
+    color: rgba(255,255,255,0.85);
     line-height: 1.9;
     font-size: 16px;
   }
@@ -460,9 +453,9 @@
 
   nav .brand {
     font-family: 'Space Mono', monospace;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.08em;
     color: var(--white);
   }
 
@@ -517,92 +510,16 @@
     50%{opacity:.8;transform:translateX(-50%) translateY(6px)}
   }
 
-  .schedule-section {
-    padding: 70px 20px;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .schedule-inner { direction: rtl; }
-
-  .schedule-title {
-    font-size: clamp(28px, 5vw, 48px);
-    font-weight: 900;
-    margin-bottom: 50px;
-    text-align: center;
-  }
-
-  .schedule-title span { color: var(--yellow); }
-
-  .schedule-item {
-    display: flex;
-    gap: 30px;
-    align-items: flex-start;
-    margin-bottom: 40px;
-    padding-bottom: 40px;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-  }
-
-  .schedule-item:last-child { border-bottom: none; margin-bottom: 0; }
-
-  .time-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-shrink: 0;
-    font-family: 'Space Mono', monospace;
-    font-weight: 700;
-    min-width: 70px;
-  }
-
-  .time-range { font-size: clamp(16px, 2.5vw, 22px); line-height: 1.2; }
-  .time-dash { font-size: 12px; color: rgba(255,255,255,0.3); margin: 2px 0; }
-
-  .session-block { flex: 1; }
-
-  .session-tag {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    padding: 4px 12px;
-    border-radius: 2px;
-    margin-bottom: 12px;
-    font-family: 'Space Mono', monospace;
-  }
-
-  .session-title {
-    font-size: clamp(17px, 2.5vw, 24px);
-    font-weight: 700;
-    line-height: 1.45;
-    margin-bottom: 14px;
-  }
-
-  .speaker-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .speaker-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-
-  .speaker-name {
-    font-size: clamp(14px, 2vw, 17px);
-    color: rgba(255,255,255,0.65);
-    font-weight: 400;
-  }
-
   @media(max-width:500px){
     .schedule-item { flex-direction: column; gap: 16px; }
-    .time-block { flex-direction: row; gap: 6px; align-items: baseline; }
-    .time-dash { display: none; }
+    .time-block { min-width: auto; }
   }
 </style>
 </head>
 <body>
 
 <nav>
-  <span class="brand">CONFUSION × קרן אלוף</span>
+  <span class="brand">CONFUSION × בוטיק המרצים של קרן אלוף × B.Y הפקות</span>
   <span class="nav-date">18.3.26 · 10:15</span>
   <a href="#register" class="nav-cta">להרשמה</a>
 </nav>
@@ -631,45 +548,38 @@
 
 <div class="yellow-band">
   <div class="ticker-inner">
-    שידור לייב &nbsp;·&nbsp; 18.3.26 &nbsp;·&nbsp; 10:15 &nbsp;·&nbsp; CONFUSION &nbsp;·&nbsp; קרן אלוף &nbsp;·&nbsp; B.Y. הפקות &nbsp;·&nbsp; שידור לייב &nbsp;·&nbsp; 18.3.26 &nbsp;·&nbsp; 10:15 &nbsp;·&nbsp; CONFUSION &nbsp;·&nbsp; קרן אלוף &nbsp;·&nbsp; B.Y. הפקות &nbsp;·&nbsp;
+    שידור לייב &nbsp;·&nbsp; 18.3.26 &nbsp;·&nbsp; 10:15 &nbsp;·&nbsp; CONFUSION &nbsp;·&nbsp; בוטיק המרצים של קרן אלוף &nbsp;·&nbsp; B.Y הפקות &nbsp;·&nbsp; שידור לייב &nbsp;·&nbsp; 18.3.26 &nbsp;·&nbsp; 10:15 &nbsp;·&nbsp; CONFUSION &nbsp;·&nbsp; בוטיק המרצים של קרן אלוף &nbsp;·&nbsp; B.Y הפקות &nbsp;·&nbsp;
   </div>
 </div>
 
 <div class="meta-strip">
   <div class="meta-item yellow">
     <span class="big">18.3.26</span>
-    <span class="small">תאריך</span>
   </div>
-  <div class="meta-item pink">
+  <div class="meta-item yellow">
     <span class="big">10:15</span>
-    <span class="small">שעה</span>
   </div>
   <div class="meta-item green">
-    <span class="big">LIVE</span>
-    <span class="small">שידור מאולפני point 2 point</span>
+    <span class="big">שידור LIVE מאולפנים POINT 2 POINT</span>
   </div>
 </div>
 
 <div class="divider"></div>
 
 <div class="about">
-  <div>
-    <h2 class="about-headline">
-      הבלבול שמוביל<br>
-      <span class="col-y">קדימה</span>
-    </h2>
-  </div>
   <div class="about-body">
     <p>
-      קרן אלוף ו-B.Y. הפקות מזמינים אתכם, <strong>כלקוחות ושותפים שלנו לדרך</strong>,
-      למפגש משודר שיתן כלים ליצירת בהירות ניהולית, להובלה רגישה <strong>שבו-זמנית מניעה קדימה גם את העובדים וגם את הארגון בתקופה מבלבלת.</strong>
+      בוטיק המרצים של קרן אלוף מזמינים אתכם, כלקוחות ושותפים שלנו לדרך,<br>
+      למפגש משודר עם ד"ר נועם פיינהולץ.
     </p>
     <br>
     <p>
-      ב-18.3.26 בשעה 10:15 ניפגש <strong>למשדר לייב</strong> עם הרצאות שנבנו במיוחד לסייע בהובלה בימים אלו.
+      המפגש ייתן כלים ליצירת בהירות ניהולית, להובלה רגישה שגם מניעה קדימה את העובדים והארגון בתקופה מבלבלת.
     </p>
     <br>
-    <p>האירוע משודר מאולפני <strong>point 2 point</strong>.</p>
+    <p>
+      האירוע משודר מאולפני point 2 point.
+    </p>
   </div>
 </div>
 
@@ -681,9 +591,7 @@
 
     <div class="schedule-item">
       <div class="time-block">
-        <span class="time-range">10:15</span>
-        <span class="time-dash">—</span>
-        <span class="time-range">11:00</span>
+        <span class="time-range">10:15-11:00</span>
       </div>
       <div class="session-block">
         <div class="session-tag" style="background:var(--yellow);color:var(--black)">הרצאה ראשונה</div>
@@ -697,9 +605,7 @@
 
     <div class="schedule-item">
       <div class="time-block">
-        <span class="time-range">11:30</span>
-        <span class="time-dash">—</span>
-        <span class="time-range">12:15</span>
+        <span class="time-range">11:30-12:15</span>
       </div>
       <div class="session-block">
         <div class="session-tag" style="background:var(--pink);color:var(--white)">הרצאה שנייה</div>
@@ -717,10 +623,6 @@
   <div class="form-inner">
     <div class="form-title" id="formTitle">
       <h2>בואו <span>להירשם</span></h2>
-      <p>
-        מילוי הטופס אינו מהווה רישום סופי לאירוע.<br>
-        ההרשמה תיבדק על ידי קרן אלוף ואישור ישלח אליכם במייל.
-      </p>
     </div>
 
     <form id="regForm" novalidate>
@@ -746,18 +648,20 @@
           <input type="tel" name="phone" placeholder="050-0000000" required>
         </div>
       </div>
+
       <button type="submit" class="submit-btn">שלחו בקשת הרשמה ←</button>
+
       <p class="form-note">
-        * ההרשמה כפופה לאישור קרן אלוף הפקות.<br>
-        לאחר הגשת הטופס תקבלו אישור במייל וזימון ליומן.
+        מילוי הטופס אינו מהווה אישור סופי להשתתפות<br>
+        קישור לצפייה ישלח לאחר אישור הרשמתך לאירוע
       </p>
     </form>
 
     <div class="success-msg" id="successMsg">
       <h3>תודה! <span>הבקשה התקבלה</span> ✓</h3>
       <p>
-        קיבלנו את פנייתכם.<br>
-        נשלח אליכם מייל אישור וזימון ליומן.
+        מילוי הטופס אינו מהווה אישור סופי להשתתפות<br>
+        קישור לצפייה ישלח לאחר אישור הרשמתך לאירוע
       </p>
     </div>
 
