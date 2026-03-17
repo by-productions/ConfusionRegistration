@@ -441,6 +441,29 @@
     color: rgba(255,255,255,0.2);
     letter-spacing: 0.08em;
   }
+  .footer-logos {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  }
+  
+  .footer-logos img {
+    height: 28px;
+    object-fit: contain;
+    opacity: 0.8;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  
+  .footer-logos img:hover {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  
+  .footer-sep {
+    color: rgba(255,255,255,0.4);
+    font-size: 18px;
+    font-family: 'Space Mono', monospace;
+  }
 
   nav {
     position: fixed; top: 0; width: 100%;
@@ -673,16 +696,26 @@
   <div>
     <div class="logo-text">KEREN ALOUF · INSPIRING PEOPLE</div>
     <div class="tagline">
-      <a href="https://www.by-p.com/" target="_blank" rel="noopener noreferrer" style="color: rgba(255,255,255,0.2); text-decoration: none;">
+      <a href="https://www.by-p.com/" target="_blank" style="color: rgba(255,255,255,0.2); text-decoration: none;">
         b.y. Creative &amp; Productions Since 1998
       </a>
     </div>
   </div>
-  <div class="logo-text">
-    <a href="https://www.by-p.com/" target="_blank" rel="noopener noreferrer" style="color: rgba(255,255,255,0.3); text-decoration: none;">
-      CONFUSION · 18.3.26 · 10:15
+
+  <!-- לוגואים באמצע -->
+  <div class="footer-logos">
+    <a href="https://www.by-p.com/" target="_blank">
+      <img src="https://i.postimg.cc/qqkcC5Kh/Logo-BY-white.png" alt="BY Logo">
+    </a>
+
+    <span class="footer-sep">×</span>
+
+    <a href="https://www.kerenalouf.co.il/" target="_blank">
+      <img src="https://i.postimg.cc/Kz5BFDWb/2-lbn.png" alt="Keren Alouf Logo">
     </a>
   </div>
+
+  <div class="logo-text">CONFUSION · 18.3.26 · 10:15</div>
 </footer>
 <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
 
