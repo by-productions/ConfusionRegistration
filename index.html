@@ -440,28 +440,36 @@
     font-size: 12px;
     color: rgba(255,255,255,0.2);
     letter-spacing: 0.08em;
-  }
-  .footer-logos {
+.footer-logos {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 28px;
   }
   
   .footer-logos img {
-    height: 28px;
     object-fit: contain;
-    opacity: 0.8;
-    transition: opacity 0.2s, transform 0.2s;
+    opacity: 0.9;
+    transition: opacity 0.25s, transform 0.25s;
+  }
+  
+  /* BY יותר גדול */
+  .by-logo {
+    height: 60px;
+  }
+  
+  /* קרן קצת יותר קטן */
+  .keren-logo {
+    height: 48px;
   }
   
   .footer-logos img:hover {
     opacity: 1;
-    transform: scale(1.05);
+    transform: scale(1.08);
   }
   
   .footer-sep {
-    color: rgba(255,255,255,0.4);
-    font-size: 18px;
+    color: rgba(255,255,255,0.5);
+    font-size: 26px;
     font-family: 'Space Mono', monospace;
   }
 
@@ -705,13 +713,13 @@
   <!-- לוגואים באמצע -->
   <div class="footer-logos">
     <a href="https://www.by-p.com/" target="_blank">
-      <img src="https://i.postimg.cc/qqkcC5Kh/Logo-BY-white.png" alt="BY Logo">
+      <img src="https://i.postimg.cc/pX0NyNjr/White-Logo-tv.png" alt="BY Logo" class="by-logo">
     </a>
-
+  
     <span class="footer-sep">×</span>
-
+  
     <a href="https://www.kerenalouf.co.il/" target="_blank">
-      <img src="https://i.postimg.cc/Kz5BFDWb/2-lbn.png" alt="Keren Alouf Logo">
+      <img src="https://i.postimg.cc/Kz5BFDWb/2-lbn.png" alt="Keren Alouf Logo" class="keren-logo">
     </a>
   </div>
 
