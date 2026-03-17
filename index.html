@@ -436,41 +436,42 @@
     letter-spacing: 0.1em;
   }
 
-  footer .tagline {
-    font-size: 12px;
-    color: rgba(255,255,255,0.2);
-    letter-spacing: 0.08em;
-.footer-logos {
-  display: flex;
-  align-items: center;
-  gap: 28px;
+  .footer-logos {
+    display: flex;
+    align-items: center; /* קריטי ליישור */
+    justify-content: center;
+    gap: 20px;
   }
   
   .footer-logos img {
     object-fit: contain;
     opacity: 0.9;
     transition: opacity 0.25s, transform 0.25s;
+    display: block;
   }
   
-  /* BY יותר גדול */
+  /* BY – הגודל הקובע */
   .by-logo {
-    height: 60px;
+    height: 56px;
   }
   
-  /* קרן קצת יותר קטן */
+  /* קרן – בדיוק 3/4 */
   .keren-logo {
-    height: 48px;
+    height: 42px; /* 56 * 0.75 */
+  }
+  
+  /* ה־X באמצע */
+  .footer-sep {
+    color: rgba(255,255,255,0.5);
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    transform: translateY(2px); /* תיקון אופטי קטן */
   }
   
   .footer-logos img:hover {
     opacity: 1;
-    transform: scale(1.08);
-  }
-  
-  .footer-sep {
-    color: rgba(255,255,255,0.5);
-    font-size: 26px;
-    font-family: 'Space Mono', monospace;
+    transform: scale(1.05);
   }
 
   nav {
@@ -722,7 +723,6 @@
       <img src="https://i.postimg.cc/Kz5BFDWb/2-lbn.png" alt="Keren Alouf Logo" class="keren-logo">
     </a>
   </div>
-
   <div class="logo-text">CONFUSION · 18.3.26 · 10:15</div>
 </footer>
 <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
