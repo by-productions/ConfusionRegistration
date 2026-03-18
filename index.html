@@ -159,7 +159,7 @@
 
   .meta-item.yellow .big { color: var(--yellow); }
   .meta-item.green .big  { color: var(--green); }
-  .meta-item.pink .big { color: var(--pink); }
+  .meta-item.pink .big   { color: var(--pink); }
 
   .divider {
     width: 100%;
@@ -181,11 +181,6 @@
     direction: rtl;
     font-weight: 700;
     text-align: center;
-  }
-
-  .about-body strong {
-    color: var(--white);
-    font-weight: 900;
   }
 
   .schedule-section {
@@ -265,14 +260,16 @@
     font-weight: 400;
   }
 
-  .form-section {
+  /* ── THANK YOU SECTION ── */
+  .thankyou-section {
     background: #111;
-    padding: 70px 20px;
+    padding: 90px 20px;
     position: relative;
     overflow: hidden;
+    text-align: center;
   }
 
-  .form-section::before {
+  .thankyou-section::before {
     content: 'CONFUSION';
     position: absolute;
     font-family: 'Space Mono', monospace;
@@ -287,137 +284,96 @@
     user-select: none;
   }
 
-  .form-inner {
-    max-width: 580px;
-    margin: 0 auto;
+  .thankyou-inner {
     position: relative;
-  }
-
-  .form-title {
-    text-align: center;
-    margin-bottom: 35px;
+    max-width: 680px;
+    margin: 0 auto;
     direction: rtl;
   }
 
-  .form-title h2 {
-    font-size: clamp(30px, 6vw, 60px);
+  .thankyou-icon {
+    font-size: clamp(48px, 8vw, 80px);
+    margin-bottom: 24px;
+    animation: pulse 2.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%,100% { transform: scale(1); }
+    50%      { transform: scale(1.08); }
+  }
+
+  .thankyou-inner h2 {
+    font-size: clamp(32px, 6vw, 64px);
     font-weight: 900;
-    line-height: 1.1;
+    line-height: 1.15;
+    margin-bottom: 20px;
   }
 
-  .form-title h2 span { color: var(--yellow); }
+  .thankyou-inner h2 span { color: var(--yellow); }
 
-  .form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
-    direction: rtl;
+  .thankyou-inner p {
+    font-size: clamp(16px, 2.2vw, 22px);
+    color: rgba(255,255,255,0.7);
+    line-height: 1.9;
+    font-weight: 300;
+    margin-bottom: 10px;
   }
 
-  @media(max-width:500px){ .form-grid { grid-template-columns:1fr; } }
+  .thankyou-inner p strong {
+    color: var(--white);
+    font-weight: 700;
+  }
 
-  .form-grid .full { grid-column: 1 / -1; }
+  .divider-short {
+    width: 60px;
+    height: 3px;
+    background: var(--yellow);
+    margin: 36px auto;
+    border-radius: 2px;
+  }
 
-  .field {
+  /* Logo links */
+  .thankyou-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(24px, 5vw, 60px);
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+
+  .thankyou-logos a {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    transition: transform 0.25s, opacity 0.25s;
+    opacity: 0.85;
   }
 
-  .field label {
-    font-size: 16px;
-    font-weight: 800;
-    letter-spacing: 0.05em;
-    color: var(--white);
-    font-family: 'Heebo', sans-serif;
+  .thankyou-logos a:hover {
+    transform: translateY(-4px);
+    opacity: 1;
   }
 
-  .field input {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 4px;
-    padding: 14px 16px;
-    color: var(--white);
-    font-size: 16px;
-    font-family: 'Heebo', sans-serif;
-    direction: rtl;
-    transition: border-color 0.25s, background 0.25s;
-    outline: none;
-    width: 100%;
+  .thankyou-logos img {
+    display: block;
+    object-fit: contain;
   }
 
-  .field input:focus {
-    border-color: var(--yellow);
-    background: rgba(245, 200, 0, 0.06);
+  .logo-by-ty   { height: clamp(60px, 8vw, 90px); }
+  .logo-ka-ty   { height: clamp(44px, 6vw, 65px); }
+
+  .thankyou-logos .logo-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
   }
 
-  .field input::placeholder { color: rgba(255,255,255,0.2); }
-
-  .submit-btn {
-    margin-top: 30px;
-    width: 100%;
-    padding: 18px;
-    background: var(--yellow);
-    color: var(--black);
-    border: none;
-    border-radius: 4px;
-    font-size: 18px;
-    font-weight: 900;
-    font-family: 'Heebo', sans-serif;
-    cursor: pointer;
-    letter-spacing: 0.05em;
-    transition: transform 0.15s, box-shadow 0.15s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .submit-btn::after {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%; width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    transition: left 0.4s;
-  }
-
-  .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(245,200,0,0.35); }
-  .submit-btn:hover::after { left: 100%; }
-  .submit-btn:active { transform: translateY(0); }
-
-  .form-note {
-    margin-top: 18px;
-    text-align: center;
-    font-size: 15px;
-    color: rgba(255,255,255,0.8);
-    line-height: 1.9;
-    direction: rtl;
-    font-weight: 500;
-  }
-
-  .success-msg,
-  .error-msg {
-    display: none;
-    text-align: center;
-    padding: 50px 20px;
-    direction: rtl;
-  }
-
-  .success-msg h3,
-  .error-msg h3 {
-    font-size: clamp(26px, 5vw, 48px);
-    font-weight: 900;
-    margin-bottom: 16px;
-  }
-
-  .success-msg h3 span { color: var(--green); }
-  .error-msg h3 span { color: var(--red); }
-
-  .success-msg p,
-  .error-msg p {
-    color: rgba(255,255,255,0.85);
-    line-height: 1.9;
-    font-size: 16px;
-  }
-
+  /* footer */
   footer {
     border-top: 1px solid rgba(255,255,255,0.07);
     padding: 30px 40px;
@@ -439,41 +395,16 @@
 
   .footer-logos {
     display: flex;
-    align-items: center; /* קריטי ליישור */
+    align-items: center;
     justify-content: center;
     gap: 20px;
   }
-  
-  .footer-logos img {
-    object-fit: contain;
-    opacity: 0.9;
-    transition: opacity 0.25s, transform 0.25s;
-    display: block;
-  }
-  
-  /* BY – הגודל הקובע */
-  .by-logo {
-    height: 90px;
-  }
-  
-  /* קרן – בדיוק 3/4 */
-  .keren-logo {
-    height: 55px; /* 56 * 0.75 */
-  }
-  
-  /* ה־X באמצע */
-  .footer-sep {
-    color: rgba(255,255,255,0.5);
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-    transform: translateY(2px); /* תיקון אופטי קטן */
-  }
-  
-  .footer-logos img:hover {
-    opacity: 1;
-    transform: scale(1.05);
-  }
+
+  .footer-logos img { object-fit: contain; opacity: 0.9; transition: opacity 0.25s, transform 0.25s; display: block; }
+  .by-logo    { height: 90px; }
+  .keren-logo { height: 55px; }
+  .footer-sep { color: rgba(255,255,255,0.5); font-size: 20px; display: flex; align-items: center; transform: translateY(2px); }
+  .footer-logos img:hover { opacity: 1; transform: scale(1.05); }
 
   nav {
     position: fixed; top: 0; width: 100%;
@@ -484,59 +415,16 @@
     direction: rtl;
   }
 
-  nav .brand {
-    font-family: 'Space Mono', monospace;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    color: var(--white);
-  }
-
-  nav .nav-date {
-    font-family: 'Space Mono', monospace;
-    font-size: 12px;
-    color: var(--yellow);
-    letter-spacing: 0.1em;
-  }
-
-  nav .nav-cta {
-    background: var(--yellow);
-    color: var(--black);
-    padding: 8px 20px;
-    border-radius: 3px;
-    font-weight: 900;
-    font-size: 13px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: opacity 0.2s;
-    font-family: 'Heebo', sans-serif;
-  }
-
-  nav .nav-cta:hover { opacity: 0.85; }
+  nav .brand { font-family: 'Space Mono', monospace; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: var(--white); }
+  nav .nav-date { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--yellow); letter-spacing: 0.1em; }
 
   .scroll-hint {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
+    position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
     animation: fadeUpDown 2s ease-in-out infinite;
   }
-
-  .scroll-hint span {
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    color: rgba(255,255,255,0.3);
-  }
-
-  .scroll-arrow {
-    width: 1px; height: 40px;
-    background: linear-gradient(to bottom, transparent, var(--yellow));
-  }
+  .scroll-hint span { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: rgba(255,255,255,0.3); }
+  .scroll-arrow { width: 1px; height: 40px; background: linear-gradient(to bottom, transparent, var(--yellow)); }
 
   @keyframes fadeUpDown {
     0%,100%{opacity:.3;transform:translateX(-50%) translateY(0)}
@@ -546,13 +434,9 @@
   @media(max-width:500px){
     .schedule-item { flex-direction: column; gap: 16px; }
     .time-block { min-width: auto; }
+    footer { padding: 24px 20px; }
   }
 </style>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Confusion – שידור לייב | 18.3.26</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
 
 <!-- Meta Pixel Code -->
 <script>
@@ -577,12 +461,10 @@ src="https://www.facebook.com/tr?id=320263198363402&ev=PageView&noscript=1"
 <nav>
   <span class="brand">CONFUSION × בוטיק המרצים של קרן אלוף × B.Y הפקות</span>
   <span class="nav-date">18.3.26 · 10:15</span>
-  <a href="#register" class="nav-cta">להרשמה</a>
 </nav>
 
 <section class="hero">
   <div class="hero-bg-text">CONFUSION</div>
-
   <div class="letters-wrap">
     <span class="letter l-c">c</span>
     <span class="letter l-o">o</span>
@@ -595,7 +477,6 @@ src="https://www.facebook.com/tr?id=320263198363402&ev=PageView&noscript=1"
     <span class="letter l-n2">n</span>
     <span class="heb-title">קוֹנְפִּיוּזֶ׳ן</span>
   </div>
-
   <div class="scroll-hint">
     <span>SCROLL</span>
     <div class="scroll-arrow"></div>
@@ -609,15 +490,9 @@ src="https://www.facebook.com/tr?id=320263198363402&ev=PageView&noscript=1"
 </div>
 
 <div class="meta-strip">
-  <div class="meta-item pink">
-    <span class="big">18.3.26</span>
-  </div>
-  <div class="meta-item yellow">
-    <span class="big">10:15</span>
-  </div>
-  <div class="meta-item green">
-    <span class="big">שידור LIVE מאולפנים POINT 2 POINT</span>
-  </div>
+  <div class="meta-item pink"><span class="big">18.3.26</span></div>
+  <div class="meta-item yellow"><span class="big">10:15</span></div>
+  <div class="meta-item green"><span class="big">שידור LIVE מאולפנים POINT 2 POINT</span></div>
 </div>
 
 <div class="divider"></div>
@@ -627,10 +502,9 @@ src="https://www.facebook.com/tr?id=320263198363402&ev=PageView&noscript=1"
     <p>
       קרן אלוף ו- B.Y. הפקות מזמינים אתכם, כלקוחות ושותפים שלנו לדרך,<br>
       למפגש משודר שיתן כלים ליצירת בהירות ניהולית.
-    <br>
-    <p>
-      האירוע משודר מאולפני point 2 point.
     </p>
+    <br>
+    <p>האירוע משודר מאולפני point 2 point.</p>
   </div>
 </div>
 
@@ -641,9 +515,7 @@ src="https://www.facebook.com/tr?id=320263198363402&ev=PageView&noscript=1"
     <h2 class="schedule-title">לו"ז <span>האירוע</span></h2>
 
     <div class="schedule-item">
-      <div class="time-block">
-        <span class="time-range">10:15-11:00</span>
-      </div>
+      <div class="time-block"><span class="time-range">10:15-11:00</span></div>
       <div class="session-block">
         <div class="session-tag" style="background:var(--yellow);color:var(--black)">הרצאה ראשונה</div>
         <h3 class="session-title">תקשורת בינאישית, פנים ארגונית והובלת צוותים בתקופות מורכבות</h3>
@@ -655,9 +527,7 @@ src="https://www.facebook.com/tr?id=320263198363402&ev=PageView&noscript=1"
     </div>
 
     <div class="schedule-item">
-      <div class="time-block">
-        <span class="time-range">11:30-12:15</span>
-      </div>
+      <div class="time-block"><span class="time-range">11:30-12:15</span></div>
       <div class="session-block">
         <div class="session-tag" style="background:var(--pink);color:var(--white)">הרצאה שנייה</div>
         <h3 class="session-title">ניהול אמפתי בימי משבר – כלים למנהלים בזמן מלחמה</h3>
@@ -670,57 +540,45 @@ src="https://www.facebook.com/tr?id=320263198363402&ev=PageView&noscript=1"
   </div>
 </div>
 
-<section class="form-section" id="register">
-  <div class="form-inner">
-    <div class="form-title" id="formTitle">
-      <h2>בואו <span>להירשם</span></h2>
-    </div>
+<!-- THANK YOU — replaces the form -->
+<section class="thankyou-section">
+  <div class="thankyou-inner">
 
-    <form id="regForm" novalidate>
-      <div class="form-grid">
-        <div class="field full">
-          <label>שם מלא *</label>
-          <input type="text" name="fullname" placeholder="ישראל ישראלי" required>
-        </div>
-        <div class="field">
-          <label>חברה *</label>
-          <input type="text" name="company" placeholder="שם החברה" required>
-        </div>
-        <div class="field">
-          <label>תפקיד *</label>
-          <input type="text" name="role" placeholder="מנהל / מנהלת" required>
-        </div>
-        <div class="field">
-          <label>מייל *</label>
-          <input type="email" name="email" placeholder="mail@company.com" required>
-        </div>
-        <div class="field">
-          <label>טלפון *</label>
-          <input type="tel" name="phone" placeholder="050-0000000" required>
-        </div>
-      </div>
+    <div class="thankyou-icon">🙏</div>
 
-      <button type="submit" class="submit-btn">שלחו בקשת הרשמה ←</button>
+    <h2>תודה שהייתם<br><span>איתנו</span></h2>
 
-      <p class="form-note">
-        מילוי הטופס אינו מהווה אישור סופי להשתתפות<br>
-        קישור לצפייה ישלח לאחר אישור הרשמתך לאירוע
-      </p>
-    </form>
+    <p>
+      היה לנו כיף לארח אתכם ב-CONFUSION.<br>
+      <strong>נתראה באירוע הבא!</strong>
+    </p>
 
-    <div class="success-msg" id="successMsg">
-      <h3>תודה! <span>הבקשה התקבלה</span> ✓</h3>
-      <p>
-        מילוי הטופס אינו מהווה אישור סופי להשתתפות<br>
-        קישור לצפייה ישלח לאחר אישור הרשמתך לאירוע
-      </p>
-    </div>
+    <div class="divider-short"></div>
 
-    <div class="error-msg" id="errorMsg">
-      <h3>אופס, <span>משהו השתבש</span></h3>
-      <p id="errorText">
-        לא הצלחנו לשלוח את ההרשמה. נסו שוב בעוד רגע.
-      </p>
+    <p style="font-size: clamp(14px,1.8vw,18px); color: rgba(255,255,255,0.45);">
+      רוצים לדעת על אירועים הבאים? בקרו אותנו:
+    </p>
+
+    <div class="thankyou-logos">
+
+      <a href="https://www.by-p.com/" target="_blank" rel="noopener">
+        <img
+          src="https://i.postimg.cc/pX0NyNjr/White-Logo-tv.png"
+          alt="B.Y. Creative & Productions"
+          class="logo-by-ty"
+        >
+        <span class="logo-label">by-p.com</span>
+      </a>
+
+      <a href="https://www.kerenalouf.co.il/" target="_blank" rel="noopener">
+        <img
+          src="https://i.postimg.cc/Kz5BFDWb/2-lbn.png"
+          alt="קרן אלוף הפקות"
+          class="logo-ka-ty"
+        >
+        <span class="logo-label">kerenalouf.co.il</span>
+      </a>
+
     </div>
   </div>
 </section>
@@ -728,32 +586,27 @@ src="https://www.facebook.com/tr?id=320263198363402&ev=PageView&noscript=1"
 <footer>
   <div>
     <div class="logo-text">KEREN ALOUF · INSPIRING PEOPLE</div>
-    <div class="tagline">
-      <a href="https://www.by-p.com/" target="_blank" style="color: rgba(255,255,255,0.2); text-decoration: none;">
+    <div>
+      <a href="https://www.by-p.com/" target="_blank" style="color:rgba(255,255,255,0.2);text-decoration:none;">
         b.y. Creative &amp; Productions Since 1998
       </a>
     </div>
   </div>
 
-  <!-- לוגואים באמצע -->
   <div class="footer-logos">
     <a href="https://www.by-p.com/" target="_blank">
       <img src="https://i.postimg.cc/pX0NyNjr/White-Logo-tv.png" alt="BY Logo" class="by-logo">
     </a>
-  
     <span class="footer-sep">×</span>
-  
     <a href="https://www.kerenalouf.co.il/" target="_blank">
       <img src="https://i.postimg.cc/Kz5BFDWb/2-lbn.png" alt="Keren Alouf Logo" class="keren-logo">
     </a>
   </div>
+
   <div class="logo-text">CONFUSION · 18.3.26 · 10:15</div>
 </footer>
-<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
 
 <script>
-  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyvuwdWxU3p-2DWg-EinNZN8280zAaArR1MbAe5MdnIQv906JIsWhmhLqqKMy0-xbq2/exec';
-
   const letters = document.querySelectorAll('.letter');
   document.addEventListener('mousemove', e => {
     const cx = window.innerWidth / 2, cy = window.innerHeight / 2;
@@ -769,92 +622,6 @@ src="https://www.facebook.com/tr?id=320263198363402&ev=PageView&noscript=1"
       window.scrollY > 60
         ? 'rgba(10,10,10,0.98)'
         : 'linear-gradient(to bottom, rgba(10,10,10,0.95), transparent)';
-  });
-
-  let submitTimeout = null;
-
-  window.addEventListener('message', function(event) {
-    if (!event.data || event.data.type !== 'registrationResult') return;
-
-    clearTimeout(submitTimeout);
-
-    const form = document.getElementById('regForm');
-    const successMsg = document.getElementById('successMsg');
-    const errorMsg = document.getElementById('errorMsg');
-    const formTitle = document.getElementById('formTitle');
-    const btn = form.querySelector('.submit-btn');
-
-    btn.disabled = false;
-    btn.textContent = 'שלחו בקשת הרשמה ←';
-
-    if (event.data.success) {
-      form.style.display = 'none';
-      errorMsg.style.display = 'none';
-      successMsg.style.display = 'block';
-      formTitle.style.display = 'none';
-    } else {
-      document.getElementById('errorText').textContent = event.data.message || 'אירעה שגיאה.';
-      errorMsg.style.display = 'block';
-    }
-  });
-
-  document.getElementById('regForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const form = this;
-    const btn = form.querySelector('.submit-btn');
-    const inputs = form.querySelectorAll('input[required]');
-    const errorMsg = document.getElementById('errorMsg');
-
-    let valid = true;
-
-    inputs.forEach(inp => {
-      if (!inp.value.trim()) {
-        inp.style.borderColor = 'var(--red)';
-        valid = false;
-      } else {
-        inp.style.borderColor = '';
-      }
-    });
-
-    if (!valid) return;
-
-    if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'YOUR_APPS_SCRIPT_WEB_APP_URL') {
-      document.getElementById('errorText').textContent = 'לא הוגדרה כתובת Apps Script בקוד האתר.';
-      errorMsg.style.display = 'block';
-      return;
-    }
-
-    errorMsg.style.display = 'none';
-    btn.textContent = 'שולח...';
-    btn.disabled = true;
-
-    const tempForm = document.createElement('form');
-    tempForm.method = 'POST';
-    tempForm.action = APPS_SCRIPT_URL;
-    tempForm.target = 'hidden_iframe';
-    tempForm.style.display = 'none';
-
-    const fields = ['fullname', 'company', 'role', 'email', 'phone'];
-
-    fields.forEach(name => {
-      const input = document.createElement('input');
-      input.type = 'hidden';
-      input.name = name;
-      input.value = form.elements[name].value.trim();
-      tempForm.appendChild(input);
-    });
-
-    document.body.appendChild(tempForm);
-    tempForm.submit();
-    tempForm.remove();
-
-    submitTimeout = setTimeout(() => {
-      btn.disabled = false;
-      btn.textContent = 'שלחו בקשת הרשמה ←';
-      document.getElementById('errorText').textContent = 'לא התקבלה תשובה מהשרת. בדקו שה-Web App פורסם עם הרשאת גישה לכולם.';
-      errorMsg.style.display = 'block';
-    }, 15000);
   });
 </script>
 </body>
